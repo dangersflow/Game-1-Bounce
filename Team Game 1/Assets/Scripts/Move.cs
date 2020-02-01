@@ -14,7 +14,7 @@ public class Move : MonoBehaviour
     Vector3 leftDim;
 
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
 
         //get sprite bounds
@@ -33,7 +33,7 @@ public class Move : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         if(Input.GetKey(KeyCode.W)){
             direction = Vector3.up;
