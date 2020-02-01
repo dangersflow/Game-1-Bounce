@@ -13,7 +13,7 @@ public class Bounce : MonoBehaviour
     Vector3 direction;
 
     public float GetRadius(){
-        return spriteBounds.size.x;
+        return spriteBounds.extents.x;
     }
 
     // Start is called before the first frame update
