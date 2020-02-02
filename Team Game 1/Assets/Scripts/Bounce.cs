@@ -27,8 +27,8 @@ public class Bounce : MonoBehaviour
         leftDim = Camera.main.ViewportToWorldPoint(new Vector3(0,0,unitsAwayFromCamera));
 
         //set a random direction & speed
-        direction = new Vector3(Random.value, Random.value, transform.position.z);
-        speed = Random.Range(10.0f, 15.0f);
+        direction = new Vector3(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f), transform.position.z);
+        speed = Random.Range(13.0f, 15.0f);
 
         //place the sprite somewhere in the world randomly
         transform.position = Camera.main.ViewportToWorldPoint(new Vector3(Random.value, Random.value, unitsAwayFromCamera));
