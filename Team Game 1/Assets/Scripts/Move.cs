@@ -5,6 +5,7 @@ using UnityEngine;
 public class Move : MonoBehaviour
 {
 
+    PlayerHealth health;
     Bounds spriteBounds;
     Vector3 extents;
     float speed;
@@ -16,6 +17,7 @@ public class Move : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
+        health = new PlayerHealth();
 
         //get sprite bounds
         spriteBounds = GetComponent<SpriteRenderer>().sprite.bounds;
@@ -71,6 +73,9 @@ public class Move : MonoBehaviour
             transform.position = new Vector3(leftDim.x+spriteBounds.size.x/2, transform.position.y, transform.position.z);
         }
 
+        Debug.Log("Health: " + health.health());
+
+
         //collision detection for balls
         
         //for each death circle
@@ -87,12 +92,20 @@ public class Move : MonoBehaviour
             Debug.Log(dist);
 
             if(dist < min_dist){
-                //if so end game
-                #if UNITY_EDITOR
-                    UnityEditor.EditorApplication.isPlaying = false;
-                #else
-                    Application.Quit();
-                #endif
+                //if hit lose a life (check if invincibility is enabled)
+                if(GetComponent<Invincibility>().enabled == false)
+                    health.loseLife();
+                //invincibility frames
+                GetComponent<Invincibility>().enabled = true;
+                Debug.Log("Health: " + health.health());
+                //if life is at zero, then end game
+                if(health.health() <= 0){
+                    #if UNITY_EDITOR
+                        UnityEditor.EditorApplication.isPlaying = false;
+                    #else
+                        Application.Quit();
+                    #endif
+                }
             }
 
         }
