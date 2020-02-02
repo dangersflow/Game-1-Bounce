@@ -95,7 +95,7 @@ public class Move : MonoBehaviour
                 //if hit lose a life (check if invincibility is enabled)
                 if(GetComponent<Invincibility>().enabled == false){
                     health.loseLife();
-                    Camera.main.GetComponent<CameraShake>().enabled = true;
+                    Camera.main.GetComponent<CameraShake>().shakeFor(0.5f);
                 }
                 //invincibility frames
                 GetComponent<Invincibility>().enabled = true;
