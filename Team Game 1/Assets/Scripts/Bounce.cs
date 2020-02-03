@@ -11,6 +11,7 @@ public class Bounce : MonoBehaviour
     Vector3 rightDim;
     Vector3 leftDim;
     Vector3 direction;
+    public AudioSource crash;
 
     public float GetRadius(){
         return spriteBounds.extents.x;
@@ -48,21 +49,25 @@ public class Bounce : MonoBehaviour
         if(transform.position.y + spriteBounds.size.y/2 >= rightDim.y){
             transform.position = new Vector3(transform.position.x, rightDim.y-spriteBounds.size.y/2, transform.position.z);
             direction = new Vector3(direction.x, -direction.y, transform.position.z);
+            crash.Play();
         }
         //-y
         if(transform.position.y - spriteBounds.size.y/2 <= leftDim.y){
             transform.position = new Vector3(transform.position.x, leftDim.y+spriteBounds.size.y/2, transform.position.z);
             direction = new Vector3(direction.x, -direction.y, transform.position.z);
+            crash.Play();
         }
         //x
         if(transform.position.x + spriteBounds.size.x/2 >= rightDim.x){
             transform.position = new Vector3(rightDim.x-spriteBounds.size.x/2, transform.position.y, transform.position.z);
             direction = new Vector3(-direction.x, direction.y, transform.position.z);
+            crash.Play();
         }
         //-x
         if(transform.position.x - spriteBounds.size.x/2 <= leftDim.x){
             transform.position = new Vector3(leftDim.x+spriteBounds.size.x/2, transform.position.y, transform.position.z);
             direction = new Vector3(-direction.x, direction.y, transform.position.z);
+            crash.Play();
         }
     }
 }
