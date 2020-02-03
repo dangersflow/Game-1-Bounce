@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Dodge : MonoBehaviour
 {
     Vector3 direction;
     float speed;
     float cooldown;
+    TMP_Text text;
+    GameObject cooldownObject;
     public AudioSource laser;
     // Start is called before the first frame update
     void Start()
@@ -15,6 +18,9 @@ public class Dodge : MonoBehaviour
         cooldown = 0.0f;
         speed = 15.0f;
         direction = Vector3.zero;
+        text = GameObject.Find("cooldown").GetComponent<TMP_Text>();
+        cooldownObject = GameObject.Find("cooldown");
+        text.text = "Cooldown: " + cooldown;
     }
 
     // Update is called once per frame
@@ -49,6 +55,13 @@ public class Dodge : MonoBehaviour
         }
         cooldown -= Time.deltaTime;
         direction = Vector3.zero;
+        if (cooldown > 0.0f){
+            text.text = "Cooldown: " + cooldown;
+        }
+        else{
+            text.text = "Cooldown: 0.0";
+        }
+        
         //debug to show cooldown time actually working
         //Debug.Log("cooldown : " + cooldown);
     }
