@@ -7,7 +7,7 @@ public class Dodge : MonoBehaviour
     Vector3 direction;
     float speed;
     float cooldown;
-    //public AudioSource laser;
+    public AudioSource laser;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,7 +44,7 @@ public class Dodge : MonoBehaviour
         //check also for cooldown already occuring so as to not keep cooldown at 2.0f
         //if user holds down L
         if(Input.GetKey(KeyCode.L) && cooldown <= 0.0f){
-            //laser.play();
+            laser.Play();
             cooldown = 1.0f;
         }
         cooldown -= Time.deltaTime;
